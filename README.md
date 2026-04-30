@@ -147,11 +147,10 @@
               print(f"Terdapat {conflicts} bentrok waktu.")
               if len(subjects) > len(times):
                   print("Penyebab: slot waktu tidak cukup.")
-
 # =====================================================
-  # VISUAL
-    Potongan kode ini menggunakan pustaka Matplotlib (plt) untuk menyajikan data secara visual. 
-    Fungsinya adalah untuk membuat grafik garis
+# VISUAL
+  Potongan kode ini menggunakan pustaka Matplotlib (plt) untuk menyajikan data secara visual. 
+  Fungsinya adalah untuk membuat grafik garis
 # =====================================================
           plt.figure()
           plt.plot(best_hist)
