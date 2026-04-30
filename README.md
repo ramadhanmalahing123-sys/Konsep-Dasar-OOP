@@ -131,35 +131,35 @@
       berfungsi sebagai tahap penyajian hasil akhir setelah proses
       Tugas utamanya adalah mengambil solusi terbaik dan menampilkannya dalam format yang mudah dipahami manusia.
     # =====================================================
-      best = sorted(pop, key=fitness, reverse=True)[0]
-      conflicts = count_conflicts(best)
-
-      print("\n===== HASIL AKHIR =====")
-      print("Fitness :", fitness(best))
-
-      for subj, t in decode(best):
-          print(f"{subj} → {t}")
-
-     print("\nPenjelasan:")
-     if conflicts == 0:
-          print("Tidak ada bentrok → jadwal optimal.")
-    else:
-          print(f"Terdapat {conflicts} bentrok waktu.")
-          if len(subjects) > len(times):
-              print("Penyebab: slot waktu tidak cukup.")
+          best = sorted(pop, key=fitness, reverse=True)[0]
+          conflicts = count_conflicts(best)
+    
+          print("\n===== HASIL AKHIR =====")
+          print("Fitness :", fitness(best))
+    
+          for subj, t in decode(best):
+              print(f"{subj} → {t}")
+    
+         print("\nPenjelasan:")
+         if conflicts == 0:
+              print("Tidak ada bentrok → jadwal optimal.")
+        else:
+              print(f"Terdapat {conflicts} bentrok waktu.")
+              if len(subjects) > len(times):
+                  print("Penyebab: slot waktu tidak cukup.")
 
     # =====================================================
     # VISUAL
       Potongan kode ini menggunakan pustaka Matplotlib (plt) untuk menyajikan data secara visual. 
       Fungsinya adalah untuk membuat grafik garis
     # =====================================================
-      plt.figure()
-      plt.plot(best_hist)
-      plt.title("Perkembangan Fitness")
-      plt.xlabel("Generasi")
-      plt.ylabel("Fitness")
-      plt.grid()
-      plt.show()
+          plt.figure()
+          plt.plot(best_hist)
+          plt.title("Perkembangan Fitness")
+          plt.xlabel("Generasi")
+          plt.ylabel("Fitness")
+          plt.grid()
+          plt.show()
 
 # RUN
 GA()
