@@ -7,7 +7,6 @@ berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
 # =========================================================
 subjects = ["AI", "DB", "WEB", "ML", "IOT"]
 
-# 🔥 ditambah agar cukup
 times = ["Pagi", "Siang", "Sore", "Malam", "Dini"]
 
 POP_SIZE = 30
