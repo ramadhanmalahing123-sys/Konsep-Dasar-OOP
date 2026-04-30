@@ -126,12 +126,11 @@
 
           pop = new_pop
 
-
-# =====================================================
-  # HASIL AKHIR
-    berfungsi sebagai tahap penyajian hasil akhir setelah proses
-    Tugas utamanya adalah mengambil solusi terbaik dan menampilkannya dalam format yang mudah dipahami manusia.
-# =====================================================
+#=====================================================
+# HASIL AKHIR
+  berfungsi sebagai tahap penyajian hasil akhir setelah proses
+  Tugas utamanya adalah mengambil solusi terbaik dan menampilkannya dalam format yang mudah dipahami manusia.
+#=====================================================
           best = sorted(pop, key=fitness, reverse=True)[0]
           conflicts = count_conflicts(best)
     
