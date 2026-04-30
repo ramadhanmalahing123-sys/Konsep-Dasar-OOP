@@ -91,7 +91,7 @@
   lalu secara berulang mengurutkan, menyeleksi, mengawinkan (crossover), 
   dan memutasi individu terbaik hingga ditemukan jadwal belajar yang sempurna tanpa konflik.
 # =========================================================
-  def GA():
+    def GA():
       pop = init_population()
       best_hist = []
 
