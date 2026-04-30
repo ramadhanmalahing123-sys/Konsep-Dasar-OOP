@@ -126,6 +126,7 @@
 
           pop = new_pop
 
+
 # =====================================================
   # HASIL AKHIR
     berfungsi sebagai tahap penyajian hasil akhir setelah proses
