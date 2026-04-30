@@ -3,43 +3,43 @@ import matplotlib.pyplot as plt
 
 # =========================================================
 # DATA (SUDAH FIX)
-berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
+  berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
 # =========================================================
-subjects = ["AI", "DB", "WEB", "ML", "IOT"]
+  subjects = ["AI", "DB", "WEB", "ML", "IOT"]
 
-times = ["Pagi", "Siang", "Sore", "Malam", "Dini"]
+  times = ["Pagi", "Siang", "Sore", "Malam", "Dini"]
 
-POP_SIZE = 30
-GENERATIONS = 100
-MUTATION_RATE = 0.2
+  POP_SIZE = 30
+  GENERATIONS = 100
+  MUTATION_RATE = 0.2
 
 # =========================================================
 # INIT
-create_schedule adalah cara membuat satu solusi, 
-sedangkan init_population adalah cara membuat sekelompok solusi sebagai modal awal algoritma untuk mencari jadwal yang paling sempurna.
+  create_schedule adalah cara membuat satu solusi, 
+  sedangkan init_population adalah cara membuat sekelompok solusi sebagai modal awal algoritma untuk mencari jadwal yang paling sempurna.
 # =========================================================
-def create_schedule():
-    return [random.choice(times) for _ in subjects]
+  def create_schedule():
+      return [random.choice(times) for _ in subjects]
 
-def init_population():
-    return [create_schedule() for _ in range(POP_SIZE)]
+  def init_population():
+      return [create_schedule() for _ in range(POP_SIZE)]
 
 # =========================================================
 # HITUNG KONFLIK
-Fungsi count_conflicts(schedule) bertugas sebagai detektor kesalahan dalam jadwal yang dibuat.
-fungsi ini menghitung berapa banyak mata kuliah yang bertabrakan karena ditempatkan pada waktu yang sama.
+  Fungsi count_conflicts(schedule) bertugas sebagai detektor kesalahan dalam jadwal yang dibuat.
+  fungsi ini menghitung berapa banyak mata kuliah yang bertabrakan karena ditempatkan pada waktu yang sama.
 # =========================================================
-def count_conflicts(schedule):
-    used = set()
-    conflicts = 0
+  def count_conflicts(schedule):
+      used = set()
+      conflicts = 0
 
-    for t in schedule:
-        if t in used:
-            conflicts += 1
-        else:
-            used.add(t)
+      for t in schedule:
+          if t in used:
+              conflicts += 1
+          else:
+              used.add(t)
 
-    return conflicts
+      return conflicts
 
 # =========================================================
 # FITNESS
