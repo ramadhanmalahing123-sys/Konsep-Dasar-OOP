@@ -1,5 +1,5 @@
-import random
-import matplotlib.pyplot as plt
+  import random
+  import matplotlib.pyplot as plt
 
 # =========================================================
 # DATA (SUDAH FIX)
