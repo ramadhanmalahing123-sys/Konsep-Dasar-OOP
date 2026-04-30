@@ -125,12 +125,11 @@
               new_pop.append(child)
 
           pop = new_pop
-
-   #=====================================================
-    # HASIL AKHIR
-      berfungsi sebagai tahap penyajian hasil akhir setelah proses
-      Tugas utamanya adalah mengambil solusi terbaik dan menampilkannya dalam format yang mudah dipahami manusia.
-   #=====================================================
+# =====================================================
+  # HASIL AKHIR
+    berfungsi sebagai tahap penyajian hasil akhir setelah proses
+    Tugas utamanya adalah mengambil solusi terbaik dan menampilkannya dalam format yang mudah dipahami manusia.
+# =====================================================
           best = sorted(pop, key=fitness, reverse=True)[0]
           conflicts = count_conflicts(best)
     
@@ -148,11 +147,11 @@
               if len(subjects) > len(times):
                   print("Penyebab: slot waktu tidak cukup.")
 
-  #=====================================================
-   # VISUAL
-      Potongan kode ini menggunakan pustaka Matplotlib (plt) untuk menyajikan data secara visual. 
-      Fungsinya adalah untuk membuat grafik garis
-  #=====================================================
+# =====================================================
+  # VISUAL
+    Potongan kode ini menggunakan pustaka Matplotlib (plt) untuk menyajikan data secara visual. 
+    Fungsinya adalah untuk membuat grafik garis
+# =====================================================
           plt.figure()
           plt.plot(best_hist)
           plt.title("Perkembangan Fitness")
