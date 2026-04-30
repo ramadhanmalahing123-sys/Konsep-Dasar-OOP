@@ -46,24 +46,24 @@
   conflicts = count_conflicts(schedule): Fungsi ini pertama-tama memanggil count_conflicts untuk mengetahui berapa banyak bentrokan waktu yang terjadi dalam satu jadwal.
   100 - conflicts * 20: Ini adalah rumus pemberian skor.
 # =========================================================
-def fitness(schedule):
-    conflicts = count_conflicts(schedule)
-    return max(100 - conflicts * 20, 0)
+    def fitness(schedule):
+        conflicts = count_conflicts(schedule)
+        return max(100 - conflicts * 20, 0)
 
 # =========================================================
 # SELECTION
   Fungsi selection(pop) ini menggunakan metode yang dikenal sebagai Tournament Selection.
 # =========================================================
-  def selection(pop):
-     return max(random.sample(pop, 3), key=fitness)
+      def selection(pop):
+         return max(random.sample(pop, 3), key=fitness)
 
 # =========================================================
 # CROSSOVER
   Fungsinya adalah untuk mengombinasikan dua jadwal "orang tua" (p1 dan p2) guna menghasilkan satu jadwal "anak" yang mewarisi sifat dari keduanya.
 # =========================================================
-  def crossover(p1, p2):
-      point = random.randint(1, len(p1)-1)
-      return p1[:point] + p2[point:]
+      def crossover(p1, p2):
+          point = random.randint(1, len(p1)-1)
+          return p1[:point] + p2[point:]
 
 # =========================================================
 # MUTATION
@@ -71,19 +71,19 @@ def fitness(schedule):
   bertujuan untuk menjaga keberagaman solusi. Jika crossover menggabungkan sifat yang sudah ada, 
   mutate memperkenalkan sifat-sifat baru yang mungkin belum pernah ada sebelumnya.
 # =========================================================
-  def mutate(schedule):
-      for i in range(len(schedule)):
-          if random.random() < MUTATION_RATE:
-              schedule[i] = random.choice(times)
-      return schedule
+      def mutate(schedule):
+          for i in range(len(schedule)):
+              if random.random() < MUTATION_RATE:
+                  schedule[i] = random.choice(times)
+          return schedule
 
 # =========================================================
 # DECODE
   fungsi decode(schedule) adalah tahap akhir yang berfungsi untuk mengubah 
   format data mentah komputer menjadi informasi yang mudah dipahami oleh manusia.
 # =========================================================
-  def decode(schedule):
-      return list(zip(subjects, schedule))
+      def decode(schedule):
+          return list(zip(subjects, schedule))
 
 # =========================================================
 # GA
