@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # =========================================================
 # DATA (SUDAH FIX)
-# berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
+berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
 # =========================================================
 subjects = ["AI", "DB", "WEB", "ML", "IOT"]
 
@@ -16,8 +16,8 @@ MUTATION_RATE = 0.2
 
 # =========================================================
 # INIT
-# create_schedule adalah cara membuat satu solusi, 
-# sedangkan init_population adalah cara membuat sekelompok solusi sebagai modal awal algoritma untuk mencari jadwal yang paling sempurna.
+create_schedule adalah cara membuat satu solusi, 
+sedangkan init_population adalah cara membuat sekelompok solusi sebagai modal awal algoritma untuk mencari jadwal yang paling sempurna.
 # =========================================================
 def create_schedule():
     return [random.choice(times) for _ in subjects]
