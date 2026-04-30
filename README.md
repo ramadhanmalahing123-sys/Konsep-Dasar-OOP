@@ -5,13 +5,13 @@
 # DATA (SUDAH FIX)
   berfungsi untuk mendefinisikan parameter utama dalam sebuah simulasi optimasi
 # =========================================================
-  subjects = ["AI", "DB", "WEB", "ML", "IOT"]
+    subjects = ["AI", "DB", "WEB", "ML", "IOT"]
 
-  times = ["Pagi", "Siang", "Sore", "Malam", "Dini"]
+    times = ["Pagi", "Siang", "Sore", "Malam", "Dini"]
 
-  POP_SIZE = 30
-  GENERATIONS = 100
-  MUTATION_RATE = 0.2
+            POP_SIZE = 30
+            GENERATIONS = 100
+            MUTATION_RATE = 0.2
 
 # =========================================================
 # INIT
