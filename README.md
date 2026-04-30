@@ -1,5 +1,5 @@
-  import random
-  import matplotlib.pyplot as plt
+    import random
+    import matplotlib.pyplot as plt
 
 # =========================================================
 # DATA (SUDAH FIX)
@@ -18,10 +18,10 @@
   create_schedule adalah cara membuat satu solusi, 
   sedangkan init_population adalah cara membuat sekelompok solusi sebagai modal awal algoritma untuk mencari jadwal yang paling sempurna.
 # =========================================================
-  def create_schedule():
-      return [random.choice(times) for _ in subjects]
+    def create_schedule():
+        return [random.choice(times) for _ in subjects]
 
-  def init_population():
+    def init_population():
       return [create_schedule() for _ in range(POP_SIZE)]
 
 # =========================================================
