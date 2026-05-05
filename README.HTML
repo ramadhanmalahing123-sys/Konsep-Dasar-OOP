@@ -1,0 +1,449 @@
+  <!DOCTYPE html>
+  <html lang="id">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Form Data Mahasiswa</title>
+  /* kerangka dasar (boilerplate) dari sebuah dokumen HTML */
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .theme-toggle {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        body.dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e2e8f0;
+        }
+        body.dark .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+        }
+        body.dark h2 {
+            color: #e2e8f0;
+        }
+        body.dark form {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        body.dark label {
+            color: #cbd5e0;
+        }
+        body.dark input, body.dark textarea, body.dark select {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+        body.dark input:focus, body.dark textarea:focus, body.dark select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        body.dark table {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        body.dark th {
+            background: linear-gradient(45deg, #2d3748, #4a5568);
+            color: #e2e8f0;
+        }
+        body.dark tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        body.dark tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            font-weight: bold;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.error {
+            background: linear-gradient(45deg, #e53e3e, #c53030);
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        h2 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        form:hover {
+            transform: translateY(-5px);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 8px;
+            width: auto;
+        }
+        .date-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .date-group select {
+            flex: 1;
+        }
+        button {
+            padding: 12px 25px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .submit {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+        .submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+        .reset {
+            background: linear-gradient(45deg, #ed8936, #dd6b20);
+            color: white;
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+        }
+        .reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 137, 54, 0.4);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        tr:hover {
+            background: #edf2f7;
+            transition: background 0.3s ease;
+        }
+        .action-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .edit-btn {
+            background: #3182ce;
+            color: white;
+        }
+        .edit-btn:hover {
+            background: #2c5282;
+            transform: scale(1.1);
+        }
+        .delete-btn {
+            background: #e53e3e;
+            color: white;
+        }
+        .delete-btn:hover {
+            background: #c53030;
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .date-group {
+                flex-direction: column;
+            }
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="header">
+            <h2>📚 Form Data Mahasiswa</h2>
+            <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
+        </div>
+
+        <form id="formMahasiswa">
+            <label for="nim">NIM</label>
+            <input type="text" id="nim" required>
+
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" required>
+
+            <label for="alamat">Alamat</label>
+            <textarea id="alamat" rows="3"></textarea>
+
+            <label>Jenis Kelamin</label>
+            <div class="radio-group">
+                <label><input type="radio" name="jk" value="Pria"> 👨 Pria</label>
+                <label><input type="radio" name="jk" value="Wanita"> 👩 Wanita</label>
+            </div>
+
+            <label>Tanggal Lahir</label>
+            <div class="date-group">
+                <select id="tanggal">
+                    <option value="">Tanggal</option>
+                </select>
+                <select id="bulan">
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03">Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+                <select id="tahun">
+                    <option value="">Tahun</option>
+                </select>
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password">
+
+            <button type="submit" class="submit">🚀 Submit</button>
+            <button type="reset" class="reset">🔄 Reset</button>
+        </form>
+
+        <h2>📊 Data Mahasiswa</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>JK</th>
+                    <th>TTL</th>
+                    <th>Password</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script src="../main.js"></script>
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const isDark = localStorage.getItem('darkMode') === 'true';
+        if (isDark) {
+            body.classList.add('dark');
+            themeToggle.textContent = '☀️ Light Mode';
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const isDarkNow = body.classList.contains('dark');
+            localStorage.setItem('darkMode', isDarkNow);
+            themeToggle.textContent = isDarkNow ? '☀️ Light Mode' : '🌙 Dark Mode';
+        });
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Override alert with toast
+        const originalAlert = window.alert;
+        window.alert = function(message) {
+            showToast(message, message.includes('berhasil') ? 'success' : 'error');
+        };
+
+        // Loading state for submit
+        const submitBtn = document.querySelector('.submit');
+        const originalSubmitText = submitBtn.textContent;
+        form.addEventListener('submit', function() {
+            submitBtn.innerHTML = '<div class="loading"></div>Submitting...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                submitBtn.innerHTML = originalSubmitText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Fade-in animation for table rows
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+        document.querySelectorAll('tr').forEach(row => observer.observe(row));
+
+        // Particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            document.getElementById('particles').appendChild(particle);
+            setTimeout(() => particle.remove(), 6000);
+        }
+        setInterval(createParticle, 300);
+    </script>
+</body>
+</html>
